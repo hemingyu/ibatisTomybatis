@@ -67,7 +67,7 @@ def replacefile(refile,fileName):
 		data_14_1=re.findall(p_14_1,line)
 		p_14_2='\$(.*?)\$'
 		data_14_2=re.findall(p_14_2,line)
-		print data_14_1,data_14_2
+		#print data_14_1,data_14_2
 		if data_1:
 			for i in range(len(data_1)):
 				line.replace(data_1[i],'<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.i//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">')
