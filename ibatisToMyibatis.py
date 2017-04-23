@@ -3,6 +3,10 @@
 import os , re, sys
 
 #replacefile转换ibatis为myibatis,针对mapper文件
+'''
+window下运行:python ibatisToMyibatis.py e:\\py(路径名)
+linux       :python ibatisToMyibatis.py /test
+'''
 def replacefile(refile,fileName):
 	print refile
 	if not refile.strip():
@@ -57,15 +61,20 @@ def replacefile(refile,fileName):
 		p_12='</dynamic?>'
 		data_12=re.findall(p_12,line)
 		#匹配#value#需要改成:#{value}
-		p_13_1='#.*?#'
+		#'#.*?#'对于一行中出现#{cn_name}  #proIdName#不适用
+		#[^{]是防止多次执行脚本，产生上述问题
+		p_13_1='#[^{].*?#'
 		data_13_1=re.findall(p_13_1,line)
-		p_13_2='#(.*?)#'
+		#[^{]不放在()内部会丢失首字母
+		p_13_2='#([^{].*?)#'
 		data_13_2=re.findall(p_13_2,line)
 		#print data_13_1,data_13_2
 		#匹配$value$需要改成:${value}
-		p_14_1='\$.*?\$'
+		#'\$.*?\$'对于一行中出现${cn_name}  $proIdName$不适用
+		#[^{]是防止多次执行脚本，产生上述问题
+		p_14_1='\$[^{].*?\$'
 		data_14_1=re.findall(p_14_1,line)
-		p_14_2='\$(.*?)\$'
+		p_14_2='\$([^{].*?)\$'
 		data_14_2=re.findall(p_14_2,line)
 		#print data_14_1,data_14_2
 		try:
