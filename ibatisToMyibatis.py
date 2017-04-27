@@ -4,6 +4,7 @@ import os , re, sys
 
 #replacefile转换ibatis为myibatis,针对mapper文件
 '''
+运行环境
 window下运行:python ibatisToMyibatis.py e:\\py(路径名)
 linux       :python ibatisToMyibatis.py /test
 '''
